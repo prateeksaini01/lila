@@ -237,6 +237,7 @@ export interface ChapterData {
   fen?: FEN | null;
   pgn?: string;
   orientation: Orientation;
+  description: string;
   mode: ChapterMode;
   initial: boolean;
   isDefaultName: boolean;

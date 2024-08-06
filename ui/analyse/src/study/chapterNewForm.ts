@@ -164,6 +164,7 @@ export function view(ctrl: StudyChapterNewForm): VNode {
                 variant: fieldValue(e, 'variant') as VariantKey,
                 pgn: fieldValue(e, 'pgn'),
                 orientation: fieldValue(e, 'orientation') as Orientation,
+                description: fieldValue(e, 'description'),
                 mode: fieldValue(e, 'mode') as ChapterMode,
                 fen: fieldValue(e, 'fen') || (ctrl.tab() === 'edit' ? ctrl.editorFen() : null),
                 isDefaultName: ctrl.isDefaultName(),
@@ -354,7 +355,17 @@ export function view(ctrl: StudyChapterNewForm): VNode {
             h('label.form-label', { attrs: { for: 'chapter-mode' } }, i18n.study.analysisMode),
             h(
               'select#chapter-mode.form-control',
-              modeChoices.map(c => option(c[0], mode, c[1])),
+              modeChoices.map(c => option(c[0], mode, c[1])),  
+            ),
+          ]),
+          h('div.form-group', [
+            h('label.form-label', { attrs: { for: 'chapter-description' } }, noarg('pinnedChapterComment')),
+            h(
+              'select#chapter-description.form-control',
+              [
+                ['', noarg('noPinnedComment')],
+                ['1', noarg('rightUnderTheBoard')],
+              ].map(v => option(v[0], noarg('noPinnedComment'), v[1])),
             ),
           ]),
           h(
